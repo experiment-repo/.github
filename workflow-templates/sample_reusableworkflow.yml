@@ -21,4 +21,4 @@ jobs:
       output1: ${{ steps.step1.outputs.result }}
     steps:
       - id: step1
-        run: echo "result=hello ${{inputs.branchName}}" >> $GITHUB_OUTPUT
+        run: echo "result=hi ${{inputs.branchName}}" >> $GITHUB_OUTPUT
