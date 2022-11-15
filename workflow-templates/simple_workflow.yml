@@ -5,7 +5,7 @@ on:
     branches: [ $default-branch ]
   pull_request:
     branches: [ $default-branch ]
-  worlflow_dispatch: 
+  workflow_dispatch: 
 
 jobs:
   build:
@@ -19,6 +19,6 @@ jobs:
         
       - name: Run a multi-line script
         run: |
-        echo Hi
-        echo I am running with ${GITHUB_REF##*/}
+          echo Hi
+          echo I am running with ${GITHUB_REF##*/}
         
