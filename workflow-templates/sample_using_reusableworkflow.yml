@@ -2,9 +2,9 @@ name: Using the reusable workflows
 on: workflow_dispatch
 jobs:
  sayHi:
-    uses: /.github/workflows/sample_reusableworkflow.yml@${{default_branch}}
+    uses: /.github/workflows/sample_reusableworkflow.yml@$default-branch
     with:
-     branchName: ${{default_branch}}
+     branchName: $default-branch
     secrets: inherit
  showHi:
     runs-on : ubuntu-latest
