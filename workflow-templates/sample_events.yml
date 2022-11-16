@@ -1,18 +1,45 @@
-name: Git Action sample for Event Trigger
+name: Event Trigger & Conditional execution
 
 on:
   push:
     branches: [ $default-branch ]
   pull_request:
     branches: [ $default-branch ]
-  worlflow_dispatch: 
+  issues:
+    types:
+      - opened    
+  workflow_dispatch: 
 
 jobs:
-  build:
+  handle_pr:
+    # This job only runs for pull request
+    name: PR
+    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Run a one-line script
-        run: echo Hello from Event Trigger
+      - run: |
+          echo Got a PR request
+   handle_push:
+    # This job only runs for push
+    name: Push
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo Push the changes
+   handle_issue:
+    # This job only runs when create issue
+    name: Issue
+    if: ${{ github.event_name == 'issues' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo Issue Created         
+  handle_manual:
+    # This job only runs for manual trigger
+    name: Manual
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo Triggered manually         
