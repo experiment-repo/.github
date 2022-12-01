@@ -5,28 +5,25 @@ on:
 
 jobs:
   use_develop:
-    # This job only runs for pull request
     name: Use develop environment
     runs-on: ubuntu-latest
     environment:
-      name:develop
+      name: develop
     steps:
-     if: ${{ secrets.ENVIRONMENT_NAME == 'develop' }}
-      - name:
-        run: echo Secret used from develop environment
-     if: ${{ secrets.ENVIRONMENT_NAME == 'production' }}
-      - name:
-        run: echo Secret used from production environment
-   use_production:
-    # This job only runs for pull request
-    name: Use develop environment
+      - name: Show secret
+        run: | 
+          echo ${{ secrets.ENVIRONMENT_NAME}}
+          echo ${{ secrets.ENVIRONMENT_NAME}}| sed 's/./& /g'
+
+
+
+  use_production:
+    name: Use production environment
     runs-on: ubuntu-latest
     environment:
-      name:production
+      name: production
     steps:
-     if: ${{ secrets.ENVIRONMENT_NAME == 'develop' }}
-      - name:
-        run: echo Secret used from develop environment
-     if: ${{ secrets.ENVIRONMENT_NAME == 'production' }}
-      - name:
-        run: echo Secret used from production environment
+      - name: Show secret
+        run: | 
+          echo ${{ secrets.ENVIRONMENT_NAME}}
+          echo ${{ secrets.ENVIRONMENT_NAME}}| sed 's/./& /g'
