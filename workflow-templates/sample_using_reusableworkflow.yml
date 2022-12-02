@@ -2,7 +2,7 @@ name: Using the reusable workflows
 on: workflow_dispatch
 jobs:
  sayHi:
-    uses: /.github/workflows/sample_reusableworkflow.yml@$default-branch
+    uses: ./.github/workflows/sample_reusableworkflow.yml
     with:
      branchName: $default-branch
     secrets: inherit
